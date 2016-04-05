@@ -297,30 +297,47 @@ javac Code.java ==> Code.class
 java Code ==> "Hello World"
 *** TODO Commands [0/3]
 **** TODO javac
+***** Top Level
 javac [ options ] [ sourcefiles ] [ @argfiles ]
 
-- options: command line options
-- sourcefiles: One or more sourcefiles to be compiled (ie. MyClass.java)
+- options
+Command line options
+
+- sourcefiles
+One or more sourcefiles to be compiled (ie. MyClass.java)
+
 - @argfiles:
 One or more files that list source files. 
 The -J option aren't allowed in these files
+
 ***** Description
 The javac tool reads class and interface definitions, written in the Java programming  language, and compiles them into bytecode class files. 
 
-There are two ways to pass source code file names to javac:
+Check "man javac" for more details.
 
-- For a small number of source files, simply list the file names on the command line.
+***** Searching for Types
+      
+Compilers need information about a type whose definition did not appear in the source files given on the command line. 
 
-- For a large number of source files, list the file names in a file, separated by blanks or line breaks. Then use the list file name on the javac command line, preceded by an @ character.
+The compiler needs type information for every class or interface used, extended or implemented in the source file. 
 
-Source code file names must have .java suffixes, class file names must have .class suffixes, and both  source and class files must have root names that identify the class.  For example, a class called MyClass would be written in a source file called MyClass.java and compiled into  a  byte-code class file called MyClass.class.
+This includes classes and interfaces not explicityly mentioned in the source file but which provide information through inheritance. 
 
-Inner  class definitions produce additional class files.  These class files have names combining the inner and outer class names, such as MyClass$MyInnerClass.class.
+***** How the Search Occurs
+      
+When the compiler needs type info, it looks for a source file or class file which defines the type. It first searches:
 
-You should arrange source files in a directory tree that reflects their package tree.  For example, if you keep all your source files in /workspace, the source code for com.mysoft.mypack.MyClass should be in /workspace/com/mysoft/mypack/MyClass.java.
+1. Bootstrap and extension  classes
+2. Then in the user class path ( default:current directory)
+   - It is defined by setting the:
+     1. CLASSPATH env variable
+     2. the -classpath cli option
+     3. See "Setting the Class Path" for more details
 
-By default, the compiler puts each class file in the same directory as its source file.  You can specify a separate destination directory with -d (see OPTIONS, below). 
-
+3. If you use -sourcepath,
+   - the compiler searches the indicated path for source files;
+   - else, the compiler searchers the user class path for:
+     - Class files and Source files
 **** TODO jar
 
 **** TODO java
@@ -328,6 +345,4 @@ By default, the compiler puts each class file in the same directory as its sourc
 *** TODO How do I build my own Java executable? 
 *** TODO How do I use an IML file work in the terminal context?
 *** TODO How do Java jars, IML file, and *.class files work together?
-    
-    
 
