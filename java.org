@@ -1,0 +1,333 @@
+
+* Important Caveats
+** == and equals
+*** Operators work differently on Objects than primitives.
+*** When checking if objects are equal, the == operator will say they are the same.
+*** The method, equal, checks if they are logically equal. 
+*** Description
+The operator == works a bit different on objects than on primitives. When we are using objects and want to check if they are equal, the operator == wiil say if they are the same, if you want to check if they are logically equal, you should use the equals method on the object. For example:
+
+String a = new String("Wow");
+String b = new String("Wow");
+String sameA = a;
+
+boolean r1 = a == b;      // This is false, since a and b are not the same object
+boolean r2 = a.equals(b); // This is true, since a and b are logically equals
+boolean r3 = a == sameA;  // This is true, since a and sameA are really the same object
+* Resources
+** Functional Java
+[[http://www.functionaljava.org/examples-java7.html#optionMap][Functional Java]]
+
+Array exists
+
+Array filter
+
+Array foldLeft
+
+Array forall
+
+Array map
+
+List map
+
+Option bind
+
+Option filter
+
+Option map
+
+HList append
+
+HList fold right
+* Learning Plan [1/9]
+** TODO How to compile a Java project into a binary?
+** TODO How to run a Java program?
+** TODO OO Programming in Java
+** TODO How to use Public/Private Methods
+** TODO How to initialize a Java Object
+** TODO Common libraries to know in Java
+** TODO What are the few topics in Java I should learn that will yield the highest return in productivity? 
+
+** DONE What are the Java primitives?
+   
+| byte    | number        | 1 byte  |
+| short   | number        | 2 bytes |
+| int     | number        | 4 bytes |
+| long    | number        | 8 bytes |
+| float   | float number  | 4 bytes |
+| double  | float number  | 8 bytes |
+| char    | a character   | 2 bytes |
+| boolean | true or false | 1 byte  |
+** TODO Java Types
+*** String
+**** Create a string with a constructor
+String s1 = new String("Who let the dogs out?");
+**** Just using "" creates a string, so no need to write it the previous way.
+String s2 = "Who who who who!";
+**** Java defined the operator + on strings to concatenate:
+String s3 = s1 + s2;
+*** Boolean
+
+Every comparison operator in java will return the type boolean that not like other languages can only accept two special values: true or false.
+
+boolean b = false;
+
+b = true;
+
+boolean toBe = false;
+b = toBe || !toBe;
+if (b) {
+    System.out.println(toBe);
+}
+
+int children = 0;
+b = children; // Will not work
+if (children) { // Will not work
+    // Will not work
+}
+
+*** Arrays
+
+int[] ary;
+arr = new int[10];
+arr[0] = 4;
+arr[1] = arr[0] + 5;
+System.out.println(arr.length);
+int[] arr = {1, 2, 3, 4, 5};
+
+
+
+** Loops
+*** for
+for (int i = 0; i < 3; i++) {}
+
+*** while
+while (condition) {}
+
+
+*** do
+do {
+
+} while(condition);
+
+*** foreach
+int[] arr = {2, 0, 1, 3};
+for (int el : arr) {
+    System.out.println(el);
+}
+**** equivalent
+int[] arr = {1, 9, 9, 5};
+for (int i = 0; i < arr.length; i++) {
+    int el = arr[i];
+    System.out.println(el);
+}
+
+*** break
+break will cause the loop to stop and will go immediately to the next statement after the loop:
+
+**** example
+int i;
+for (i = 0; i < 5; i++) {
+    if (i >= 2) {
+        break;
+    }
+    System.out.println("Yuhu");
+}
+System.out.println(i);
+// Output:
+// Yuhu
+// Yuhu
+// 2
+
+*** continue
+continue will stop the current iteration and will move to the next one. Notice that inside a for loop, it will still run the third section.
+
+**** example
+int i;
+for (i = 0; i < 5; i++) {
+    if (i >= 3) {
+        break;
+    }
+    System.out.println("Yuhu");
+    if (i >= 1) {
+        continue;
+    }
+    System.out.println("Tata");
+}
+System.out.println(i);
+// Output
+// Yuhu
+// Tata
+// Yuhu
+// Yuhu
+// 3
+
+
+** Functions 
+*** Basic Explanation
+**** All function definitions must be inside classes.
+**** Function are aka methods
+In Java, all function definitions must be inside classes. We also call functions methods. 
+**** Example Code
+public class Main {
+    public static void foo() {
+        // Do something here
+    }
+}
+
+**** Structure
+***** public
+      it's a public method accessible by other objects
+***** static
+      It's a method that can accessed as a class method
+***** void
+      void is the return type
+***** foo
+      Is the method name
+
+
+      
+*** Summary
+**** Every Java method has to be within a class
+**** Static methods belong to a class 
+**** Non-static methods belong to objects
+**** All parameters to functions are passed by value
+**** Primitives content is copied
+**** Objects are not copied and some would say 'passed by reference'
+     
+* Maven
+** TODO Checklist [0/2]
+ - [ ] Create a Maven project
+ - [ ] 
+** Public Repos
+** Description
+
+Maven, a Yiddish word meaning accumulator of knowledge, was originally started as an attempt to simplify the build processes in the Jakarta Turbine project. There were several projects each with their own Ant build files that were all slightly different and JARs were checked into CVS. We wanted a standard way to build the projects, a clear definition of what the project consisted of, an easy way to publish project information and a way to share JARs across several projects.
+
+The result is a tool that can now be used for building and managing any Java-based project. We hope that we have created something that will make the day-to-day work of Java developers easier and generally help with the comprehension of any Java-based project.
+
+** Objectives
+   
+Maven’s primary goal is to allow a developer to comprehend the complete state of a development effort in the shortest period of time. In order to attain this goal there are several areas of concern that Maven attempts to deal with:
+
+Making the build process easy
+Providing a uniform build system
+Providing quality project information
+Providing guidelines for best practices development
+Allowing transparent migration to new features
+
+* Questions
+** DONE What is a JAR file?
+
+In software, JAR (Java Archive) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file to distribute application software or libraries on the Java platform.
+
+JAR files are fundamentally archive files, built on the ZIP file format and have the .jar file extension. Computer users can create or extract JAR files using the jar command that comes with a JDK. They can also use zip tools to do so; however, the order of entries in the zip file headers is important when compressing, as the manifest often needs to be first. Inside a JAR, file names are unicode text
+
+*** Design
+
+A JAR file allows Java runtimes to efficiently deploy a set of classes and their associated resources. The elements in a JAR file can be compressed, which, together with the ability to download an entire application in a single request, makes downloading a JAR file much more convenient than separately downloading the many uncompressed files which would form a single Java Application. The package java.util.zip contains classes that read and write JAR files.
+
+A JAR file has an optional manifest file located in the path META-INF/MANIFEST.MF. The entries in the manifest file determine how one can use the JAR file. For instance, a Classpath entry can be used to specify other JAR files for loading with the JAR. This entry consists of a list of absolute or relative paths to other JAR files. Although intended to simplify JAR use, in practice it turns out to be notoriously brittle, as it depends on all the relevant JARs being in the exact locations specified when the entry-point JAR was built. To change versions or locations of libraries, a new manifest is needed.
+
+To extract the contents of a JAR file users can use any standard unzip software, or the jar command that comes with every Java Virtual Machine: "jar -xf foo.jar".
+Developers can digitally sign JAR files. In that case, the signature information becomes part of the embedded manifest file. The JAR itself is not signed, but instead every file inside the archive is listed along with its checksum; it is these checksums that are signed. Multiple entities may sign the JAR file, changing the JAR file itself with each signing, although the signed files themselves remain valid. When the Java runtime loads signed JAR files, it can validate the signatures and refuse to load classes that do not match the signature. It can also support 'sealed' packages, in which the Classloader will only permit Java classes to be loaded into the same package if they are all signed by the same entities. This prevents malicious code from being inserted into an existing package, and so gaining access to package-scoped classes and data.
+
+Developers can obfuscate JAR files so that a user of the JAR file doesn't get much information regarding the code it contains, or to reduce its size, which is useful in Embedded system development, where space may be limited.
+
+*** Manifest
+On the Java platform, a Manifest file is a specific file contained within a JAR file.[5][6] It is used to define extension and package-related data. It is a metadata file that contains name-value pairs organized in different sections. If a JAR file is intended to be used as an executable file, the manifest file specifies the main class of the application. The manifest file is named MANIFEST.MF.
+It is not uncommon to find a computer file described as a manifest in situations unrelated to Java.
+    
+
+
+*** Executable JAR files
+
+An executable Java program can be packaged in a JAR file, along with any libraries the program uses. Executable JAR files have the manifest specifying the entry point class with Main-Class: myPrograms.MyClass and an explicit Class-Path (and the -cp argument is ignored). Some operating systems can run these directly when clicked. The typical invocation is "java -jar foo.jar" from a command line.
+
+Native launchers can be created on most platforms. For instance Microsoft Windows users who prefer having Windows EXE files can use tools such as JSmooth, Launch4J, WinRun4J or Nullsoft Scriptable Install System to wrap single JAR files into executables.
+
+** DONE What is a Java Package?
+*** Description
+A Java package is a technique for organizing Java classes into namespaces similar to the modules of Modula, providing modular programming in Java.
+
+Java packages can be stored in compressed files called JAR files, allowing classes to be downloaded faster as groups rather than individually. Programmers also typically use packages to organize classes belonging to the same category or providing similar functionality. A package provides a unique namespace for the types it contains. Classes in the same package can access each other's package-private and protected members.
+
+*** Overview
+In general, a package can contain the following kinds of types. A package allows a developer to group classes (and interfaces) together. These classes will all be related in some way – they might all have to do with a specific application or perform a specific set of tasks. The Java API is a collection of packages – for example, the javax.xml package. The javax.xml package and its subpackages contain classes to handle XML.
+
+    
+*** Using packages
+
+In a Java source file, the package that this file's class or classes belong to is specified with the package keyword. 
+
+- package is usually the first keyword in the source file. 
+- At most, one package declaration can appear in a source file.
+
+package java.awt.event;
+
+To use a package's classes inside a Java source file, it is convenient to import the classes from the package with an import declaration. The following declaration:
+
+import java.awt.event.*;
+** DONE What's the difference between a library, framework, and module?
+
+- Library
+  Collection of related functionality
+- Framework
+  Inversion of Control
+- Module
+Abstract interface with explicit exports and imports. Implementation and interface are separate. There may be multiple implementations and the implementation is hidde
+   
+
+
+*** StackOverflow Explanation
+[[http://stackoverflow.com/questions/4099975/difference-between-a-module-library-and-a-framework][Difference between a library, framework, and module]]
+** DONE How do I create a new Java Class?
+public class NewClass {
+   public NewClass() {
+   }
+}
+
+** TODO What is the Java RunTime?
+** TODO How do I create my own Java packages?
+** TODO How do I import and include other packages into a JAR?
+** TODO What is an IML file?
+** TODO Terminal [0/3]
+*** Observations
+javac Code.java ==> Code.class
+java Code ==> "Hello World"
+*** TODO Commands [0/3]
+**** TODO javac
+javac [ options ] [ sourcefiles ] [ @argfiles ]
+
+- options: command line options
+- sourcefiles: One or more sourcefiles to be compiled (ie. MyClass.java)
+- @argfiles:
+One or more files that list source files. 
+The -J option aren't allowed in these files
+***** Description
+The javac tool reads class and interface definitions, written in the Java programming  language, and compiles them into bytecode class files. 
+
+There are two ways to pass source code file names to javac:
+
+- For a small number of source files, simply list the file names on the command line.
+
+- For a large number of source files, list the file names in a file, separated by blanks or line breaks. Then use the list file name on the javac command line, preceded by an @ character.
+
+Source code file names must have .java suffixes, class file names must have .class suffixes, and both  source and class files must have root names that identify the class.  For example, a class called MyClass would be written in a source file called MyClass.java and compiled into  a  byte-code class file called MyClass.class.
+
+Inner  class definitions produce additional class files.  These class files have names combining the inner and outer class names, such as MyClass$MyInnerClass.class.
+
+You should arrange source files in a directory tree that reflects their package tree.  For example, if you keep all your source files in /workspace, the source code for com.mysoft.mypack.MyClass should be in /workspace/com/mysoft/mypack/MyClass.java.
+
+By default, the compiler puts each class file in the same directory as its source file.  You can specify a separate destination directory with -d (see OPTIONS, below). 
+
+**** TODO jar
+
+**** TODO java
+
+*** TODO How do I build my own Java executable? 
+*** TODO How do I use an IML file work in the terminal context?
+*** TODO How do Java jars, IML file, and *.class files work together?
+    
+    
+
