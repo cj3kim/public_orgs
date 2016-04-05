@@ -286,17 +286,46 @@ public class NewClass {
    public NewClass() {
    }
 }
+** DONE What is an IML file?
+IML is a module file created by IntelliJ IDEA, an IDE used to develop Java applications. It stores information about a development module, which may be a Java, Plugin, Android, or Maven component; saves the module paths, dependencies, and other settings.
+
+Looking for how to open iml files? Checkout http://www.openthefile.net/extension/iml
+** DONE What is an Artifact?
+An artifact is a file, usually a JAR, that gets deployed to a Maven repository.
+
+A Maven build produces one or more artifacts, such as a compiled JAR and a "sources" JAR.
+
+Each artifact has a group ID (usually a reversed domain name, like com.example.foo), an artifact ID (just a name), and a version string. The three together uniquely identify the artifact.
+
+A project's dependencies are specified as artifacts.
+
+
+
+** DONE What is the difference between  jar, ear, and war files?
+
+These files are simply zipped files using java jar tool. These files are created for different purposes. Here is the description of these files:
+
+** jar files
+These files are with the .jar extension. The .jar files contain the libraries, resources and accessories files like property files.
+
+** war files
+These files are with the .war extension. The war file contains the web application that can be deployed on the any servlet/jsp container. The .war file contains jsp, html, javascript and other files for necessary for the development of web applications.
+
+** ear files:
+The .ear file contains the EJB modules of the applications.
 
 ** TODO What is the Java RunTime?
 ** TODO How do I create my own Java packages?
 ** TODO How do I import and include other packages into a JAR?
-** TODO What is an IML file?
 ** TODO Terminal [0/3]
 *** Observations
 javac Code.java ==> Code.class
 java Code ==> "Hello World"
-*** TODO Commands [0/3]
-**** TODO javac
+**** Monday - 04/04/2016 - 08:43 PM PDT
+After some investigation, I found out the java cli tool takes a Java class as an argument, but it can also take a jar. 
+
+*** TODO Commands [2/3]
+**** TODO javac [0/1]
 ***** Top Level
 javac [ options ] [ sourcefiles ] [ @argfiles ]
 
@@ -338,11 +367,58 @@ When the compiler needs type info, it looks for a source file or class file whic
    - the compiler searches the indicated path for source files;
    - else, the compiler searchers the user class path for:
      - Class files and Source files
-**** TODO jar
+***** Important Options       
+***** TODO Questions [0/1]
+****** TODO How do I compile lib files into a Java Class or Bundle?
+**** DONE jar
+The jar tool combines multiple files into a single JAR archive file. jar is a general purpose archiving and compression tool, based on ZIP and teh ZLIB compression format.
 
-**** TODO java
+Almost exactly like the tar utility.
+
+Designed to package Java appletes or applications into a single archive.
+***** Executable Option
+
+- m    
+
+Includes name: value attribute pairs from the specified manifest file manifest in the file at META-INF/MANIFEST.MF.  
+
+A name:  value  pair is added unless one already exists with the same name, in which case its value is updated.
+
+On the command line, the letters m and f must appear in the same order that manifest  and  jarfile appear. Example use:
+
+- jar cmf myManifestFile myFile.jar *.class
+
+You  can  add special-purpose name: value attribute pairs to the manifest that aren't contained in the default manifest. Examples of such attributes would be those for vendor  information,  version information,  package  sealing, and to make JAR-bundled applications executable. See the JAR Files trail in the Java Tutorial and the Notes for Developers page for examples of using the m option.
+
+**** DONE java
+     
+***** Description
+
+The  java  tool launches a Java application.  It does this by starting a Java runtime environment, loading a specified class, and invoking that class's main method.  The  method  must  be  declared public  and  static , it must not return any value, and it must accept a String array as a parameter. The method declaration must look like the following:
+
+- public static void main(String args[])
+
+By default, the first non-option argument is the name of the class to be invoked.  A  fully-quali- fied class name should be used.  If the -jar option is specified, the first non-option argument is the name of a JAR archive containing class and  resource  files  for  the  application,  with  the startup class indicated by the Main-Class manifest header.
+
+The  Java  runtime  searches for the startup class, and other classes used, in three sets of locations: the bootstrap class path, the installed extensions, and the user class path.
+
+Non-option arguments after the class name or JAR file name are passed to the main function.
+
+***** Execute a Jar file
+
+-jar   
+
+Execute a program encapsulated in a JAR archive.  The first argument is the name of  a  JAR file  instead  of  a startup class name.  In order for this option to work, the manifest of the JAR file must contain a line of the form Main-Class:classname.  
+
+Here, classname identifies the class having the public static void main(String[] args) method that serves as your application's starting point.  See the Jar tool reference page and the  Jar  trail  of  the Java Tutorial for information about working with Jar files and Jar-file manifests. 
+
+When  you  use  this option, the JAR file is the source of all user classes, and other user class path settings are ignored. 
+
+Note that JAR files that can be run with the "java -jar" option can have their execute per- missions  set  so  they  can  be run without using "java -jar". Refer to Java Archive (JAR) Files. 
+
 
 *** TODO How do I build my own Java executable? 
 *** TODO How do I use an IML file work in the terminal context?
+
 *** TODO How do Java jars, IML file, and *.class files work together?
 
